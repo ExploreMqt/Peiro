@@ -59,7 +59,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PassThroughMessageHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RespondOkMessageHandler.cs" />
     <Compile Include="TestableActionDescriptor.cs" />
   </ItemGroup>
   <ItemGroup>

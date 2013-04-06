@@ -7,6 +7,11 @@ using System.Threading;
 
 namespace Peiro
 {
+	/// <summary>
+	/// HttpActionDescriptor is an abstract class and there are no public concrete derived classes. 
+	/// You need an HttpActionDescriptor instance to create HttpActionContext objects. 
+	/// This is a no-op implementation which facilitates creating HttpActionContext instances.
+	/// </summary>
 	public class TestableActionDescriptor : HttpActionDescriptor
 	{
 		public override string ActionName
