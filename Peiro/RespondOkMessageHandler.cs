@@ -11,16 +11,18 @@ namespace Peiro
 	/// </summary>
 	public class RespondOkMessageHandler : DelegatingHandler
 	{
-		public Func<HttpRequestMessage, Task<HttpResponseMessage>> RespondOk = request => CreateOkResponse(request);
-		public static Task<HttpResponseMessage> CreateOkResponse(HttpRequestMessage request)
+		public Func<HttpRequestMessage, Task<HttpResponseMessage>> Respond = request => CreateResponse(request, HttpStatusCode.OK);
+		public Action<HttpRequestMessage> HandledMessage = m => { };
+		public static Task<HttpResponseMessage> CreateResponse(HttpRequestMessage request, HttpStatusCode statusCode)
 		{
 			var result = new TaskCompletionSource<HttpResponseMessage>();
-			result.SetResult(request.CreateResponse(HttpStatusCode.OK));
+			result.SetResult(request.CreateResponse(statusCode));
 			return result.Task;
 		}
 		protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
 		{
-			return RespondOk(request);
+			HandledMessage(request);
+			return Respond(request);
 		}
 	}
 }

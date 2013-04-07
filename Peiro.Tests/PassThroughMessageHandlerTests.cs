@@ -15,14 +15,7 @@ namespace Peiro.Tests
 		{
 			var request = new HttpRequestMessage();
 			HttpRequestMessage messagePassed = null;
-			var sut = new EnableSendAsyncMessageHandler(new RespondOkMessageHandler
-			{
-				RespondOk = r =>
-					{
-						messagePassed = r;
-						return RespondOkMessageHandler.CreateOkResponse(r);
-					}
-			});
+			var sut = new EnableSendAsyncMessageHandler(new RespondOkMessageHandler { HandledMessage = m => messagePassed = m });
 
 			sut.CallSendAsync(request);
 			sut.Dispose();
