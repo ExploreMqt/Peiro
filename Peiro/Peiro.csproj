@@ -59,9 +59,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="InMemoryServer.cs" />
     <Compile Include="PassThroughMessageHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RespondMessageHandler.cs" />
+    <Compile Include="RespondOkMessageHandler.cs" />
     <Compile Include="TestableActionDescriptor.cs" />
   </ItemGroup>
   <ItemGroup>
