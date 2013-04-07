@@ -60,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FakeResolver.cs" />
+    <Compile Include="HttpServerExtension.cs" />
     <Compile Include="InMemoryServer.cs" />
     <Compile Include="PassThroughMessageHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
