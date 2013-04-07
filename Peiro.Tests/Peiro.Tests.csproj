@@ -55,6 +55,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FakeResolverTests.cs" />
     <Compile Include="InMemoryServerTests.cs" />
     <Compile Include="PassThroughMessageHandlerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
