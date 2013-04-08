@@ -55,6 +55,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApiControllerExtensionsTests.cs" />
     <Compile Include="FakeResolverTests.cs" />
     <Compile Include="HttpServerExtensionTests.cs" />
     <Compile Include="InMemoryServerTests.cs" />
