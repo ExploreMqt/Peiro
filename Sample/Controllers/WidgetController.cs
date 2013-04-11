@@ -17,10 +17,10 @@ namespace Sample.Controllers
 			return Request.CreateResponse(HttpStatusCode.OK, new Widget { Id = id, SerialNumber = "abc-123" });
 		}
 
-		//// POST api/values
-		//public void Post([FromBody]string value)
-		//{
-		//}
+		public HttpResponseMessage Post(Widget value)
+		{
+			return Request.CreateResponse(HttpStatusCode.Created, value);
+		}
 
 		//// PUT api/values/5
 		//public void Put(int id, [FromBody]string value)
