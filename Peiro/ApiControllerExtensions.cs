@@ -14,14 +14,18 @@
 */
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Controllers;
+using System.Web.Http.Hosting;
 using System.Web.Http.Routing;
 
 namespace Peiro
 {
+	/// <summary>
+	/// This class simulates what WebApi sets up for an a request. 
+	/// This class is most commonly used in unit tests
+	/// </summary>
 	public static class ApiControllerExtensions
 	{
 		public static string ControllerName(this ApiController controller)
@@ -44,6 +48,13 @@ namespace Peiro
 			Array.ForEach(routes, r => lastRoute = config.Routes.MapHttpRoute(r.Key, r.Value));
 			var routeData = new HttpRouteData(lastRoute, new HttpRouteValueDictionary { { "controller", controllerName.ToLower() } });
 			return new HttpControllerContext(config, routeData, request);
+		}
+		public static void FakeRequest(this ApiController controller)
+		{
+			controller.ControllerContext = controller.FakeControllerContext("http://www.sample.com");
+			controller.Request = controller.ControllerContext.Request;
+			controller.Request.Properties[HttpPropertyKeys.HttpConfigurationKey] = controller.ControllerContext.Configuration;
+			controller.Request.Properties[HttpPropertyKeys.HttpRouteDataKey] = controller.ControllerContext.RouteData;
 		}
 	}
 }

@@ -16,6 +16,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using System.Web.Http.Hosting;
 using Xunit;
 
 namespace Peiro.Tests
@@ -49,7 +50,43 @@ namespace Peiro.Tests
 
 			Assert.Equal("{controller}/{id}", context.RouteData.Route.RouteTemplate);
 		}
-		
+		[Fact]
+		public void FakeRequest_Controller_HasControllerContext()
+		{
+			var controller = new TestController();
+
+			controller.FakeRequest();
+
+			Assert.NotNull(controller.ControllerContext);
+		}
+		[Fact]
+		public void FakeRequest_Controller_HasRequest()
+		{
+			var controller = new TestController();
+
+			controller.FakeRequest();
+
+			Assert.NotNull(controller.Request);
+		}
+		[Fact]
+		public void FakeRequest_Controller_RequestPropertyConfigurationKeySet()
+		{
+			var controller = new TestController();
+
+			controller.FakeRequest();
+
+			Assert.Equal(controller.ControllerContext.Configuration, controller.Request.Properties[HttpPropertyKeys.HttpConfigurationKey]);
+		}
+		[Fact]
+		public void FakeRequest_Controller_RequestPropertyRouteDataKeySet()
+		{
+			var controller = new TestController();
+
+			controller.FakeRequest();
+
+			Assert.Equal(controller.ControllerContext.RouteData, controller.Request.Properties[HttpPropertyKeys.HttpRouteDataKey]);
+		}
+
 		public class TestController : ApiController
 		{
 		}
